@@ -1,3 +1,5 @@
+import random
+
 # # 1
 # def newstr(text, nid):
 #     for l in text.split():
@@ -83,21 +85,47 @@ ar = [1, 3, 7, 15]
 ray = [2, 6, 14, 22]
 ind = int(input(f"6. Введите последовательно первый и второй индексы (от {-len(ar)} до {len(ar)})\n: "))
 dex = int(input(": "))
-aplusi(ar, ray, ind, dex)
+if ind != dex:
+    aplusi(ar, ray, ind, dex)
+else:
+    print("\nа где")
 
 # 7
+print("\n7. ")
+def stonksnot(b, st, nst, bank, check):
+    for i in b:
+        bank = 0
+        st = 0
+        nst = 0
+        for j in range(len(b[i])):
+            if b[i][j] % 2 == 0:
+                st += b[i][j]
+            else:
+                nst += b[i][j]
+        bank = st - nst
+        if bank < 0:
+            check = False
+        return bank, check
+
+check = True
 business = {
-    'Team 17': 2,
-    'COMRA': 3,
-    'A-B06M24 Gang': 4,
-    'Hellbound Razers': 6,
-    'The Blues Hood': 777
+    'Team 17': [random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000)], 
+    'COMRA': [random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000)],
+    'A-B06M24 Gang': [random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000)],
+    'Hellbound Razers': [random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000)],
+    'The Blues Hood': [random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000), random.randint(500, 1000)]
 }
+res = stonksnot(business, 0, 0, 0, check)
+print(res, "\nВсе бизнесы прибыльны?\n", check)
 
 # 8
 print("\n8. ")
-def worldparty(team, fin = None):
-    team = [team.replace('s', '') for team in team]
-    print(team)
+def armageddon(team, fin = None):
+    for name in range(len(team)):
+        if 's' in team[name][len(team[name]) - 1]:
+            team[name] = None
+    return team
 
-team = {"Agent Dennis", "Spadge", "Boggy B", "Dr. Awesome", "Chicken Legs", "Tapper", "Andy D", "Seventies Babe"}
+team = ["Agent Dennis", "Spadge", "Boggy B", "Dr. Awesome", "Chicken Legs", "Tapper", "Andy D", "Seventies Babe"]
+res = armageddon(team)
+print(f"{team}\n{res}")
