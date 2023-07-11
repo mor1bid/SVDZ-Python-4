@@ -21,28 +21,30 @@ def a_gang(desc = None, **record):
         desc[record[i]] = i
     return desc
 
-print("\n2.", a_gang(leader='Hearr Icks', color='green', member= 144, allies= None, type='Anarchist raiders'))
+print("\n2.", a_gang(leader='Hearr Icks', color='green', members= 144, casualties= None, type='Anarchist raiders'))
 
 # 3 Возьмите задачу о банкомате из семинара 2. 
 # Разбейте её на отдельные операции - функции. 
 # Дополнительно сохраняйте все операции поступления и снятия средств в список.
 
-def op1(sum, money, perc3, round, *percs12):
+def op1(money, perc3, perc2 = 3 / 100):
+    global sum, round
     sum -= perc3
     sum += abs(money)
     print("Вы пополнили ваш счёт на\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.")
     round += 1
     if round % 3 == 0:
-        sum += sum * percs12[0]
+        sum += sum * perc2
 
-def op2(sum, money, perc3, round, *percs12):
+def op2(money, perc3, perc1 = 1.5 / 100, perc2 = 3 / 100):
+    global sum, round
     sum -= perc3
-    procent = abs(money) * percs12[0]
+    procent = abs(money) * perc1
     sum -= abs(money) + procent
     print("Вы сняли со счёта сумму в размере\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.\nС учётом ставки в 1.5% процентов, с вашего счёта также было снято\n:", procent, "кредитов.")
     round += 1
     if round % 3 == 0:
-        sum += sum * percs12[1]
+        sum += sum * perc2
 
 print("\n3.")
 sum = 0
@@ -58,16 +60,16 @@ while (compute):
     if move == "1":
         money = int(input("Введите желаемую сумму\n: "))
         if money % 50 == 0:
-            print(op1(sum, money, round, perc2 = 3 / 100))
+            print(op1(money, perc3))
         else:
             sum -= perc3
             print("Операция не была проведена. Сумма должна быть кратна 50.\nВаш счёт составляет\n:", sum, "кредитов.")
     elif move == "2":
         money = int(input("Введите желаемую сумму\n: "))
         if money % 50 == 0 and money <= sum:
-            print(op2(sum, money, round, perc1 = 1.5 / 100, perc2 = 3 / 100))
+            print(op2(money, perc3))
         else:
-            sum -= perc3()
+            sum -= perc3
             print("Операция не была проведена. Сумма должна быть кратна 50.\nВаш счёт составляет\n:", sum, "кредитов.")
     elif move == "3":
         print("Ваш счёт составляет\n:", sum, "кредитов.")

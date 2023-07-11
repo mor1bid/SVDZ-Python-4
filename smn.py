@@ -47,7 +47,7 @@ def digsort(digs):
     return digs
 
 digs = [4, 8, 15, 16, 23, 42]
-digs = input("\n4. Введите два числа через пробел\n: ").split()
+digs = input("\n4. Введите числа через пробел\n: ").split()
 res = digsort(digs)
 print(res)
 
@@ -55,7 +55,6 @@ print(res)
 print("\n5. ")
 def worldparty(n, p, l, fin = None):
     l = [l.replace('%', '') for l in levelup]
-    print(l)
     if fin == None:
         fin = dict()
     for i in range(len(payday)):
